@@ -14,5 +14,11 @@ fetchTest()
 </template>
 
 <style scoped>
+@import 'normalize.css';
 
+#app {
+    /** 让字体抗锯齿，看起来更清晰 */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 </style>

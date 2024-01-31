@@ -14,9 +14,10 @@ app.use(createPinia())
 app.use(router)
 
 // 全局注册引入组件
-// import { Tabbar, TabbarItem } from 'vant'
-// app.use(Tabbar)
-// app.use(TabbarItem)
+import { Tabbar, TabbarItem, Search } from 'vant'
+app.use(Tabbar)
+app.use(TabbarItem)
+app.use(Search)
 
 const rootValue = 16
 const rootWidth = 390
