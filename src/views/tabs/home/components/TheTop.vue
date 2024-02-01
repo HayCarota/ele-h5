@@ -1,21 +1,37 @@
 <script setup lang="ts">
 import type { ISearchRecomment } from '@/types'
+import OpSearch from '@/components/OpSearch.vue'
+import { ref } from 'vue'
 interface IProps {
   recomments: ISearchRecomment[]
 }
 
 defineProps<IProps>()
+
+const searchValue = ref('test')
+
+const onSearch = (v?: string | number) => {
+  console.log('search', v)
+}
+
+const onCancel = (v?: string | number) => {
+  console.log('cancel', v)
+}
+
+const onClear = (v?: string | number) => {
+  console.log('clear', v)
+}
 </script>
 
 <template>
   <div class="home-top">
     <div class="top">
       <img class="location-icon" src="@/assets/imgs/index_page/location.png" />
-      <div class="location">幸福小区（东南门）</div>
+      <div class="location">幸福小区(东南门)</div>
       <img class="shopcart-icon" src="@/assets/imgs/index_page/shopcart.png" />
       <img class="comments-icon" src="@/assets/imgs/index_page/comments.png" />
     </div>
-    <VanSearch
+    <!-- <VanSearch
       shape="round"
       background="linear-gradient(to right, rgb(53,200,250), rgb(31,175,243))"
       placeholder="世界茶饮 35减2"
@@ -23,9 +39,23 @@ defineProps<IProps>()
       <template #right-icon>
         <div>搜索</div>
       </template>
-    </VanSearch>
+    </VanSearch> -->
+    <OpSearch
+    show-action
+      v-model="searchValue"
+      shape="round"
+      background="linear-gradient(to right, rgb(53,200,250), rgb(31,175,243))"
+      placeholder="世界茶饮 35减2"
+      @search="onSearch"
+      @cancel="onCancel"
+      @clear="onClear"
+    >
+      <!-- <template #right-icon>
+        <div>搜索</div>
+      </template> -->
+    </OpSearch>
     <div class="search-recomment">
-        <div v-for="v in recomments" :key="v.value" class="tag">{{ v.label }}</div>
+      <div v-for="v in recomments" :key="v.value" class="tag">{{ v.label }}</div>
     </div>
   </div>
 </template>
@@ -42,8 +72,8 @@ defineProps<IProps>()
     font-size: 15px;
     font-weight: bold;
     .location-icon {
-      width: 24px;
-      height: 24px;
+      width: 20px;
+      height: 20px;
     }
     .location {
       flex: 1;
@@ -62,11 +92,11 @@ defineProps<IProps>()
     display: flex;
     padding: 0 10px 10px;
     .tag {
-        font-size: 12px;
-        border-radius: 10px;
-        background: rgb(242, 242, 242, 0.3);
-        padding: 2px 8px;
-        margin-right: 10px;
+      font-size: 12px;
+      border-radius: 10px;
+      background: rgb(242, 242, 242, 0.3);
+      padding: 2px 8px;
+      margin-right: 10px;
     }
   }
 }

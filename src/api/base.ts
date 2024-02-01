@@ -9,7 +9,6 @@ const instance = axios.create({
 instance.interceptors.response.use((response) => {
     const {data: _data} = response
     const {data, code, msg} = _data
-    console.log(111,code)
 
     if(code !== 0) {
         showDialog({
