@@ -14,6 +14,7 @@ interface IEmits {
   (e: 'cancel'): void
   (e: 'clear'): void
   (e: 'update:modelValue', v?: string | number): void
+  (e: 'inputClick'): void
 }
 
 const emits = defineEmits<IEmits>()
@@ -47,6 +48,7 @@ const onClear = () => {
               :value="modelValue"
               :placeholder="placeholder"
               @keypress="onKeyPress"
+              @click="emits('inputClick')"
               @input="(e) => emits('update:modelValue', (e.target as HTMLInputElement).value)"
             />
             <div v-if="$slots['right-icon']" class="op-field__right-icon">

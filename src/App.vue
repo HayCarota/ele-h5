@@ -20,5 +20,7 @@ fetchTest()
     /** 让字体抗锯齿，看起来更清晰 */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    color: #2c3e50;
+    font-size: 14px;
 }
 </style>
