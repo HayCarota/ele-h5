@@ -6,6 +6,7 @@ import type { ISearchResult } from '@/types'
 import { useToggle } from '@/use/useToggle'
 import { computed } from 'vue'
 import { watch } from 'vue'
+import { useDebounce } from '@/use/useDebounce'
 //  声明事件接口，接口中属性值是一个函数，函数名是cancel，返回值是一个函数void
 interface IEmits {
   (e: 'cancel'): void
@@ -49,12 +50,22 @@ const onTagClick = (v:string) => {
     onSearch(v)
 }
 
-watch(searchValue, (new_v) => {
+// // 会报没有与此调用匹配的重载。 最后一个重载给出了以下错误。其实是watch 实际有三个参数， 把泛型去掉，做一个断言
+// watch(searchValue, useDebounce((new_v) => {
+//     if(!new_v) {
+//         searchResult.value = []
+//         return
+//     }
+//     onSearch(new_v as string)
+// }, 1000))
+
+const debounceValue = useDebounce(searchValue, 1000)
+watch(debounceValue, (new_v) => {
     if(!new_v) {
         searchResult.value = []
         return
     }
-    onSearch(new_v)
+    onSearch(new_v as string)
 })
 </script>
 
