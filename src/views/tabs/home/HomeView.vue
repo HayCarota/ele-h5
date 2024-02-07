@@ -5,6 +5,7 @@ import SearchView from '@/views/search/SearchView.vue'
 import { useAsync } from '@/use/useAsync';
 import { fetchHomePageData } from '@/api/home';
 import type { IHomeInfo } from '@/types';
+import OpLoadingView from '@/components/OpLoadingView.vue';
 
 const recomments = [
   { value: 1, label: '牛腩' },
@@ -25,8 +26,14 @@ const {data, pending} = useAsync(fetchHomePageData, {} as IHomeInfo, true)
       <SearchView v-if="isSearchViewShown" @cancel="toggleSearchView"></SearchView>
     </Transition>
     <TheTop :recomments="recomments" @searchClick="toggleSearchView"/>
-    {{ pending }}
-    {{ data }}
+    <OpLoadingView :loading="pending" type="skeleton">
+      <!-- 组件中slot插槽模板使用方法 <template #template>
+        <div>加载中</div>
+      </template> -->
+      <div>
+        {{ data }}
+      </div>
+    </OpLoadingView>
   </div>
 </template>
 
