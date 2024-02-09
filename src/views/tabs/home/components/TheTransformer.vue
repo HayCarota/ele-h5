@@ -21,12 +21,12 @@ defineProps<IProps>()
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   padding: 10px;
+  background: whitesmoke;
 
   &__item {
     font-size: 13px;
     line-height: 15px;
     text-align: center;
-    z-index: 999;
 
     img {
       width: 48px;

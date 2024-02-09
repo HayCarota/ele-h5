@@ -1,11 +1,12 @@
 <script setup lang="ts">
+import type { IScrollBarInfo } from '@/types'
+import { ref, onMounted } from 'vue'
 import { useInterval } from '@/use/useInterval'
 import { useTimeout } from '@/use/useTimeout'
-import { ref, onMounted } from 'vue'
-import type { IScrollBarInfo } from '@/types'
+
 interface IProps {
-  intervalTime: number
-  transitionTime: number
+  intervalTime?: number
+  transitionTime?: number
   height?: number
   data: IScrollBarInfo[]
 }
@@ -28,9 +29,9 @@ onMounted(() => {
     // 如果超过 item 个数就需要将第一个元素接到后面
     if (index >= count) {
       firstSwipeItem.style.transform = `translateY(${index * props.height}px)`
-      // 第一个元素滚动动画结束之后，将整个container 位置重置
+      // 第一个元素滚动动画结束之后，将整个 container 位置重置
       const timeout = setTimeout(() => {
-        //重置逻辑
+        // 重置逻辑
         firstSwipeItem.style.transform = ''
         container.style.transform = ''
         container.style.transition = ''
@@ -38,21 +39,22 @@ onMounted(() => {
       }, props.transitionTime)
     }
     container.style.transform = `translateY(-${index * props.height}px)`
-    container.style.tansition = `all linear ${props.transitionTime}ms`
+    container.style.transition = `all linear ${props.transitionTime}ms`
     index = index % count
   }, props.intervalTime)
 })
 </script>
+
 <template>
   <div class="home-scroll-bar">
-    <div class="home-scroll-bar-swipe">
+    <div class="home-scroll-bar__swipe">
       <div ref="containerRef">
         <div class="swipe-item" v-for="v in props.data" :key="v.type">
           <div class="scroll-bar__info" :class="`scroll-bar__info__${v.type}`">
             <span class="info-badge">{{ v.badge }}</span>
             <span class="info-detail" v-html="v.detail"></span>
             <span class="info-btn op-thin-border">{{ v.btn }}</span>
-        </div>
+          </div>
         </div>
       </div>
     </div>
@@ -60,7 +62,6 @@ onMounted(() => {
 </template>
 
 <style lang="scss">
-// 
 .home-scroll-bar {
   --bean-color: rgb(252, 164, 40);
   --hongbao-color: rgb(252, 68, 25);
@@ -71,7 +72,7 @@ onMounted(() => {
     font-size: 13px;
     position: relative;
     overflow: hidden;
-    height: v-bind(heightPx); // 动态设置css中变量值
+    height: v-bind(heightPx);
     .swipe-item {
       height: v-bind(heightPx);
     }
