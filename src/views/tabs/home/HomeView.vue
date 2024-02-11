@@ -8,6 +8,7 @@ import { useToggle } from '@/use/useToggle'
 import { useAsync } from '@/use/useAsync'
 import { fetchHomePageData } from '@/api/home'
 import OpLoadingView from '@/components/OpLoadingView.vue'
+import CountDown from './components/CountDown.vue'
 
 const [isSearchViewShown, toggleSearchView] = useToggle(false)
 
@@ -34,6 +35,9 @@ const { data, pending } = useAsync(fetchHomePageData, {
         </div>
         <TheTransformer :data="data.transformer" />
         <ScrollBar :data="data.scrollBarInfoList" />
+        <div class="home-page__activity">
+          <CountDown :data="data.countdown" />
+        </div>
       </OpLoadingView>
     </div>
   </div>
