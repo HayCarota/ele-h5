@@ -11,6 +11,9 @@ import OpLoadingView from '@/components/OpLoadingView.vue'
 import CountDown from './components/CountDown.vue'
 import OpSwipe from '@/components/swipe/OpSwipe'
 import OpSwipItem from '@/components/swipe/OpSwipItem'
+import { PRIMARY_COLOR, TRANSPARENT } from '@/config'
+import { HOME_TABS } from './config'
+import { ref } from 'vue'
 
 const [isSearchViewShown, toggleSearchView] = useToggle(false)
 
@@ -22,6 +25,12 @@ const { data, pending } = useAsync(fetchHomePageData, {
   countdown: {} as ICountdown,
   activities: []
 } as IHomeInfo)
+
+const tabBackgroundColor = ref(TRANSPARENT)
+
+const onTabScroll = ({isFixed}: {isFixed: boolean}) => {
+  tabBackgroundColor.value = isFixed ? 'white' : TRANSPARENT
+}
 </script>
 
 <template>
@@ -40,9 +49,22 @@ const { data, pending } = useAsync(fetchHomePageData, {
         <div class="home-page__activity">
           <CountDown :data="data.countdown" />
           <OpSwipe class="home-page__activity__swipe" :autoplay="3000" :loop="true">
-            <OpSwipItem v-for="v in data.activities" :key="v"> <img :src="`src/assets/api${v}`" /></OpSwipItem>
+            <OpSwipItem v-for="v in data.activities" :key="v">
+              <img :src="`src/assets/api${v}`"
+            /></OpSwipItem>
           </OpSwipe>
         </div>
+        <VanTabs
+          sticky
+          offset-top="54px"
+          :color="PRIMARY_COLOR"
+          :background="tabBackgroundColor"
+          @scrolll="onTabScroll"
+        >
+          <VanTab v-for="v in HOME_TABS" :key="v.value" :title="v.title">
+            <component :is="v.component"></component>
+          </VanTab>
+        </VanTabs>
       </OpLoadingView>
     </div>
   </div>
