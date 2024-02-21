@@ -16,6 +16,7 @@ app.use(router)
 
 // 全局注册引入组件
 import { Tabbar, TabbarItem, Search, Icon, Loading, Skeleton, Tabs, Tab, Sticky } from 'vant'
+import lazyPlugin from './directives/lazyLoading'
 app.use(Tabbar)
 app.use(TabbarItem)
 app.use(Search)
@@ -25,6 +26,7 @@ app.use(Skeleton)
 app.use(Tabs)
 app.use(Tab)
 app.use(Sticky)
+app.use(lazyPlugin)
 
 
 const rootValue = 16
