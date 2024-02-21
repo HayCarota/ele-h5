@@ -3,6 +3,7 @@ import type { IShop } from '@/types'
 import { ref } from 'vue'
 import { fetchShopList } from '@/api/shop'
 import OpList from '@/components/list/OpList'
+import ShopItem from './ShopItem.vue'
 
 let page = 1
 
@@ -32,7 +33,7 @@ const onLoad = async () => {
       finished-text="没有更多了"
       @load="onLoad"
     >
-      <div style="height: 100px" v-for="v in shopList" :key="v.id">{{ v.shopName }}</div>
+      <ShopItem  v-for="v in shopList" :key="v.id" :data="v" />
     </OpList>
   </div>
 </template>
