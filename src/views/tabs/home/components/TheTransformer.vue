@@ -21,7 +21,6 @@ defineProps<IProps>()
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   padding: 10px;
-  background: whitesmoke;
 
   &__item {
     font-size: 13px;
