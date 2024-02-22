@@ -1,9 +1,16 @@
 <template>
   <div class="me-page op-fullscreen">
     <div class="me-page__top">
-        <img class="avatar" src="https://b.yzcdn.cn/vant/icon-demo-1126.png   ">
+      <template v-if="user.id">
+        <img class="avatar" :src="`src/assets/api${user.avatar}`">
+        <div class="name" >{{ user.nickname }}</div>
+        <div class="account op-then-border" @click="logout">退出</div>
+      </template>
+      <template v-else>
+        <img class="avatar" src="https://b.yzcdn.cn/vant/icon-demo-1126.png">
         <div class="name" @click="gotoLogin">请登录</div>
         <div class="account op-then-border" @click="gotoLogin">账号登录</div>
+      </template>
     </div>
     <OpLoadingView :loading="pending" type="skeleton">
         <div class="me-page__super-card">
@@ -39,8 +46,11 @@ import { fetchMePageData } from '@/api/me'
 import type { ISuperCard } from '@/types';
 import { useRouter } from 'vue-router';
 import OpLoadingView from '@/components/OpLoadingView.vue';
+import { useAuth } from '@/use/useAuth';
+
 
 const router = useRouter()
+const {user, logout} = useAuth()
 const { data, pending } = useAsync(fetchMePageData, { cards: [], superCard: {} as ISuperCard })
 const gotoLogin = () => {
     router.push({ name: 'login' })
