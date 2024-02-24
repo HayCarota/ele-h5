@@ -4,12 +4,12 @@
       <template v-if="user.id">
         <img class="avatar" :src="`src/assets/api${user.avatar}`">
         <div class="name" >{{ user.nickname }}</div>
-        <div class="account op-then-border" @click="logout">退出</div>
+        <div class="account op-thin-border" @click="logout">退出</div>
       </template>
       <template v-else>
         <img class="avatar" src="https://b.yzcdn.cn/vant/icon-demo-1126.png">
         <div class="name" @click="gotoLogin">请登录</div>
-        <div class="account op-then-border" @click="gotoLogin">账号登录</div>
+        <div class="account op-thin-border" @click="gotoLogin">账号登录</div>
       </template>
     </div>
     <OpLoadingView :loading="pending" type="skeleton">
@@ -21,6 +21,7 @@
                     <div class="bean">吃货豆:</div>
                     <div class="bean-count">{{ data.superCard.beanCount }}</div>
                 </div>
+                <div class="super-card__left__tips">{{ data.superCard.tips }}</div>
             </div>
             <VanIcon name="arrow" size="14" color="rgb(212,189,178)"></VanIcon>
         </div>
