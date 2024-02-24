@@ -124,7 +124,7 @@ const formetter = (v: IDiscount) => {
       </div>
       <h4>优惠</h4>
       <div class="discount">
-        <div v-for="v in data. " :key="v.type">
+        <div v-for="v in data.discounts" :key="v.type">
           <div>{{ v.label }}</div>
           <div>{{ formetter(v) }}</div>
         </div>

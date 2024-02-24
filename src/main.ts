@@ -30,7 +30,12 @@ import {
   CellGroup,
   Field,
   Button,
-  ActionSheet
+  ActionSheet,
+  Sidebar,
+  SidebarItem,
+  Popup,
+  Checkbox,
+  CheckboxGroup
 } from 'vant'
 import lazyPlugin from './directives/lazyLoading'
 app.use(Tabbar)
@@ -48,6 +53,11 @@ app.use(CellGroup)
 app.use(Field)
 app.use(Button)
 app.use(ActionSheet)
+app.use(Sidebar)
+app.use(SidebarItem)
+app.use(Popup)
+app.use(Checkbox)
+app.use(CheckboxGroup)
 app.use(lazyPlugin)
 
 const rootValue = 16
