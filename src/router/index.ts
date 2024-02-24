@@ -4,6 +4,7 @@ import HomeViewVue from '@/views/tabs/home/HomeView.vue'
 import OrderViewVue from '@/views/tabs/order/OrderView.vue'
 import MeViewVue from '@/views/tabs/me/MeView.vue'
 import LoginViewVue from '@/views/login/LoginView.vue'
+import ShopViewVue from '@/views/shop/ShopView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL), // 设置history，就不会带哈希#
@@ -26,6 +27,11 @@ const router = createRouter({
       name: 'login',
       path: '/login',
       component: LoginViewVue
+    },
+    {
+      name: 'shop',
+      path: '/shop/:id',
+      component: ShopViewVue
     }
   ]
 })
