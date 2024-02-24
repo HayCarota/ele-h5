@@ -29,7 +29,8 @@ import {
   Form,
   CellGroup,
   Field,
-  Button
+  Button,
+  ActionSheet
 } from 'vant'
 import lazyPlugin from './directives/lazyLoading'
 app.use(Tabbar)
@@ -46,7 +47,7 @@ app.use(Form)
 app.use(CellGroup)
 app.use(Field)
 app.use(Button)
-
+app.use(ActionSheet)
 app.use(lazyPlugin)
 
 const rootValue = 16
