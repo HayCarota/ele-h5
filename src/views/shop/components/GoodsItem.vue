@@ -18,7 +18,7 @@ const gotoGoods = () => {
 
 <template>
     <div class="shop-goods-item" @click="gotoGoods">
-      <img class="img" v-lazy="`http://127.0.0.1:3000/src/assets/api${data.imgUrl}`" />
+      <img class="img" v-lazy="`../../src/assets/api${data.imgUrl}`" />
       <div class="content">
         <div class="name">{{ data.name }}</div>
         <div class="tips op-ellipsis" v-if="data.tips">{{ data.tips }}</div>

@@ -62,7 +62,7 @@ const formetter = (v: IDiscount) => {
         </div>
       </div>
       <div class="info__right">
-        <img :src="`http://127.0.0.1:3000/src/assets/api${data.postUrl}`" />
+        <img :src="`../../src/assets/api${data.postUrl}`" />
       </div>
     </div>
     <div class="shop-header__service">
